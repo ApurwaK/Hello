@@ -1,28 +1,27 @@
 pipeline {
     agent any
     
+    tools {
+        nodejs 'NodeJS_14' // Use the NodeJS installation configured in Jenkins
+    }
+    
     stages {
         stage('Checkout') {
             steps {
-                echo 'Starting repository checkout...'
-                git url: 'https://github.com/ApurwaK/Hello.git'
-                echo 'Repository checkout complete.'
+                git  'https://github.com/ApurwaK/Hello.git'
+            }
+        }
+        stage('Install JSONLint') {
+            steps {
+                // JSONLint should already be installed globally, so this step is just for demonstration
+                // sh 'npm install -g jsonlint' // This line can be omitted if configured globally
+                echo 'JSONLint is assumed to be installed globally'
             }
         }
         stage('Lint JSON files') {
             steps {
-                echo 'Installing jsonlint...'
-                sh 'npm install -g jsonlint'
-                echo 'jsonlint installation complete.'
-                
-                echo 'Checking jsonlint version...'
-                sh 'jsonlint --version'
-                
-                echo 'Listing JSON files...'
-                sh 'ls -l *.json'
-                
-                echo 'Linting JSON files...'
-                sh 'find . -name "*.json" -exec jsonlint -q --indent 4 {} \\;'
+                // Run jsonlint command to check indentation
+                sh 'find . -name "*.json" -exec jsonlint --quiet --indent 4 {} \\;'
             }
             post {
                 failure {
