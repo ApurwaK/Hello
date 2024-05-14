@@ -1,32 +1,26 @@
-
 pipeline {
     agent any
     
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out repository...'
+                // Checkout your repository from GitHub
                 git 'https://github.com/ApurwaK/Hello.git'
-                echo 'Repository checkout complete.'
             }
         }
         stage('Lint JSON files') {
             steps {
-                echo 'Linting JSON files...'
-                sh 'ls -l' // List files to debug
-                sh 'which jsonlint' // Check jsonlint location
-                sh 'npm install -g jsonlint' // Install jsonlint
-                sh 'jsonlint --version' // Check jsonlint version
-                sh 'find . -name "*.json" -exec jsonlint -q --indent 4 {} \\;'
-                echo 'JSON linting complete.'
+                // Install any necessary dependencies
+                sh 'npm install -g jsonlint'
+                
+                // Run jsonlint command to check indentation
+                sh 'jsonlint --quiet --indent 4 *.json || exit 1'
             }
             post {
-                success {
-                    echo 'JSON indentation check passed!'
-                }
                 failure {
+                    // If indentation check fails, print an error message and exit with error status
                     echo 'JSON indentation check failed!'
-                    currentBuild.result = 'FAILURE'
+                    error 'JSON indentation check failed!'
                 }
             }
         }
