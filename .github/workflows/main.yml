@@ -1,0 +1,23 @@
+
+            - name: Checkly Trigger
+  # You may pin to the exact commit or the version.
+  # uses: tj-actions/checkly-trigger@e756bc1fa7f47caabe80ed779b57a057df5fcbf7
+  uses: tj-actions/checkly-trigger@v2.2.0
+  with:
+    # The URL of the Checkly trigger.
+    trigger-url: 
+    # Set to true to record each trigger invocation as a deployment event.
+    deployment: # optional, default is false
+    # Repository name, i.e. "checkly/backend-api".
+    repository: # optional, default is ${{ github.repository }}
+    # Git hash, tag, version "v1.0.1" or other identifier making this deploy unique.
+    sha: # optional, default is ${{ github.sha }}
+    # A staging or preview URL injected as ENVIRONMENT_URL in browser checks and auto-replaced in API checks.
+    environment-url: # optional, default is 
+    # An optional data center location where to run your triggered check. Use the shorter names here, like eu-west-1 or us-west-1.
+    run-location: # optional, default is us-east-1
+    # The environment name of your triggered check, i.e. "production".
+    environment-name: # optional, default is 
+    # The deployment id of your triggered check, i.e. "deployment-1".
+    deployment-id: # optional, default is 
+                    
