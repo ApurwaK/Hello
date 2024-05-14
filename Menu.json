@@ -1,11 +1,11 @@
-{"menu": {  
-  "id": "file",  
-  "value": "File",  
-  "popup": {  
-    "menuitem": [  
-      {"value": "New", "onclick": "CreateDoc()"},  
-      {"value": "Open", "onclick": "OpenDoc()"},  
-      {"value": "Save", "onclick": "SaveDoc()"}  
-    ]  
-  }  
-}}
+{
+    "attendance": 75,
+    "class": 9,
+    "email": "jessa@pynative.com",
+    "id": 1,
+    "name": "Jessa Duggar",
+    "subjects": [
+        "English",
+        "Geometry"
+    ]
+}
