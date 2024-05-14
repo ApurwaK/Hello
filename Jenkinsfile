@@ -4,21 +4,28 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your repository from GitHub
-                git 'https://github.com/ApurwaK/Hello.git'
+                echo 'Starting repository checkout...'
+                git url: 'https://github.com/ApurwaK/Hello.git'
+                echo 'Repository checkout complete.'
             }
         }
         stage('Lint JSON files') {
             steps {
-                // Install any necessary dependencies
+                echo 'Installing jsonlint...'
                 sh 'npm install -g jsonlint'
+                echo 'jsonlint installation complete.'
                 
-                // Run jsonlint command to check indentation
-                sh 'jsonlint --quiet --indent 4 *.json || exit 1'
+                echo 'Checking jsonlint version...'
+                sh 'jsonlint --version'
+                
+                echo 'Listing JSON files...'
+                sh 'ls -l *.json'
+                
+                echo 'Linting JSON files...'
+                sh 'find . -name "*.json" -exec jsonlint -q --indent 4 {} \\;'
             }
             post {
                 failure {
-                    // If indentation check fails, print an error message and exit with error status
                     echo 'JSON indentation check failed!'
                     error 'JSON indentation check failed!'
                 }
