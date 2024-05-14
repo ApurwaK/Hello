@@ -1,0 +1,30 @@
+pipeline:
+  agent: any
+  
+  tools:
+    nodejs: 'Recent node' # Use the NodeJS installation configured in Jenkins
+    
+  stages:
+    - stage: 'Checkout'
+      steps:
+        - git:
+            url: 'https://github.com/ApurwaK/Hello.git'
+    
+    - stage: 'Install JSONLint'
+      steps:
+        - script:
+            echo: 'JSONLint is assumed to be installed globally'
+    
+    - stage: 'Lint JSON files'
+      steps:
+        - bat: |
+            for /R %%i in (*.json) do (
+                jsonlint --quiet --indent 4 "%%i" || exit /b 1
+            )
+      post:
+        failure:
+          steps:
+            - script:
+                echo: 'JSON indentation check failed!'
+                error: 'JSON indentation check failed!'
+
