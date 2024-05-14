@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'NodeJS_14' // Use the NodeJS installation configured in Jenkins
+        nodejs 'Recent node' // Use the NodeJS installation configured in Jenkins
     }
     
     stages {
