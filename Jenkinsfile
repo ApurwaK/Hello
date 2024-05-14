@@ -18,10 +18,14 @@ pipeline {
                 echo 'JSONLint is assumed to be installed globally'
             }
         }
-        stage('Lint JSON files') {
+         stage('Lint JSON files') {
             steps {
-                // Run jsonlint command to check indentation
-                sh 'find . -name "*.json" -exec jsonlint --quiet --indent 4 {} \\;'
+                // Windows-specific command to find and lint JSON files
+                bat '''
+                for /R %%i in (*.json) do (
+                    jsonlint --quiet --indent 4 "%%i" || exit /b 1
+                )
+                '''
             }
             post {
                 failure {
