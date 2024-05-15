@@ -14,8 +14,8 @@ pipeline {
         stage('Print python file') {
             steps {
                 // JSONLint should already be installed globally, so this step is just for demonstration
-                 sh 'python3 python.py' // This line can be omitted if configured globally
-                echo 'JSONLint is assumed to be installed globally'
+                 sh 'python python.py' // This line can be omitted if configured globally
+                echo 'Python script is getting printed'
             }
         }
          stage('Lin
