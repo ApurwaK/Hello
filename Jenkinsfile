@@ -11,22 +11,15 @@ pipeline {
                 git  'https://github.com/ApurwaK/Hello.git'
             }
         }
-        stage('Install JSONLint') {
+        stage('Print python file') {
             steps {
-                // JSONLint should already be installed globally, so this step is just for demonstration
-                // sh 'npm install -g jsonlint' // This line can be omitted if configured globally
-                echo 'JSONLint is assumed to be installed globally'
+                script{
+                 sh 'python pp.py'
+                }// This line can be omitted if configured globally
+                echo 'Python script is getting printed'
             }
         }
-         stage('Lint JSON files') {
-            steps {
-                // Windows-specific command to find and lint JSON files
-                bat '''
-                for /R %%i in (*.json) do (
-                    jsonlint --quiet --indent 4 "%%i" || exit /b 1
-                )
-                '''
-            }
+            
             post {
                 failure {
                     echo 'JSON indentation check failed!'
