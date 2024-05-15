@@ -15,17 +15,10 @@ pipeline {
             steps {
                 script{
                  sh 'python pp.py'
-                }// This line can be omitted if configured globally
+                }
                 echo 'Python script is getting printed'
             }
         }
-            
-            post {
-                failure {
-                    echo 'JSON indentation check failed!'
-                    error 'JSON indentation check failed!'
-                }
-            }
-        }
     }
+                 
 }
