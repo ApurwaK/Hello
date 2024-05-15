@@ -14,7 +14,7 @@ pipeline {
         stage('Print python file') {
             steps {
                 script{
-                 sh 'cat python.py'
+                 sh 'pp.py'
                 }// This line can be omitted if configured globally
                 echo 'Python script is getting printed'
             }
