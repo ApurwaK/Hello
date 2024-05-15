@@ -27,6 +27,12 @@ pipeline {
                 )
                 '''
             }
+            post {
+                failure {
+                    echo 'JSON indentation check failed!'
+                    error 'JSON indentation check failed!'
+                }
+            }
+        }
     }
-                 
 }
