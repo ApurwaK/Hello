@@ -11,6 +11,14 @@ pipeline {
                 git  'https://github.com/ApurwaK/Hello.git'
             }
         }
+        stage('Print python file') {
+            steps {
+                // JSONLint should already be installed globally, so this step is just for demonstration
+                 sh 'python3 python.py' // This line can be omitted if configured globally
+                echo 'JSONLint is assumed to be installed globally'
+            }
+        }
+         stage('Lin
         stage('Install JSONLint') {
             steps {
                 // JSONLint should already be installed globally, so this step is just for demonstration
