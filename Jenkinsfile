@@ -19,7 +19,7 @@ pipeline {
                 echo 'Python script is getting printed'
             }
         }
-         stage('Lin
+        
         stage('Install JSONLint') {
             steps {
                 // JSONLint should already be installed globally, so this step is just for demonstration
