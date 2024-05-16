@@ -2,23 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Execute Python Script') {
             steps {
-                // Checkout your repository from GitHub
-                git 'https://github.com/ApurwaK/Hello.git'
-            }
-        }
-        stage('Validate JSON') {
-            steps {
-                script {
-                    try {
-                        // Run Python script to validate JSON files
-                        sh 'pp.py'
-                    } catch (Exception e) {
-                        echo "Error: ${e}"
-                        currentBuild.result = 'FAILURE'
-                    }
-                }
+                echo 'Executing Python script...'
+                sh 'python pp.py'
+                echo 'Python script execution completed.'
             }
         }
     }
