@@ -2,12 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Execute Python Script') {
+        stage('Checkout') {
             steps {
-                echo 'Executing Python script...'
+                // Checkout your repository from GitHub
+                git 'https://github.com/ApurwaK/Hello.git'
+            }
+        }
+        stage('Validate JSON - First Script') {
+            steps {
+                echo 'Executing first Python script...'
                 sh 'python pp.py'
-                echo 'Python script execution completed.'
+                echo 'First Python script execution completed.'
+            }
+        }
+        stage('Validate JSON - Another Script') {
+            steps {
+                echo 'Executing another Python script...'
+                dir('.github/script'){
+                sh 'python validate_json.py'
+                echo 'Another Python script execution completed.'
             }
         }
     }
+}
 }
