@@ -16,7 +16,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
     # Construct the path to the json files directory relative to the script's location
-    json_dir = os.path.join(script_dir, '..', 'data')
+    json_dir = os.path.join(script_dir, '..', 'workflows')
 
     for filename in os.listdir(json_dir):
         if filename.endswith('.json'):
