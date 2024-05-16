@@ -18,7 +18,7 @@ pipeline {
         stage('Validate JSON - Another Script') {
             steps {
                 echo 'Executing another Python script...'
-                dir('.github/script'){
+                dir('.github/scripts'){
                 sh 'python validate_json.py'
                 echo 'Another Python script execution completed.'
             }
