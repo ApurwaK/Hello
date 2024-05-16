@@ -1,3 +1,15 @@
-{
-  hhjkdsjmxz
+
+ {
+  "name": "John Doe",
+  "age": 30,
+  "email": "john@example.com",
+  "address": {
+    "street": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "postal_code": "12345"
+  }
+  "tags": ["example", "json", "format"]
 }
+
+
