@@ -13,7 +13,7 @@ pipeline {
                 script {
                     try {
                         // Run Python script to validate JSON files
-                        sh 'validate_json.py'
+                        sh 'pp.py'
                     } catch (Exception e) {
                         echo "Error: ${e}"
                         currentBuild.result = 'FAILURE'
